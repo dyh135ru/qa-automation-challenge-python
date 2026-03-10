@@ -1,5 +1,5 @@
 import logging
-from pages.base_page import BasePage
+from pages.common.base_page import BasePage
 
 logger = logging.getLogger(__name__)
 
@@ -10,6 +10,12 @@ class UploadPage(BasePage):
         self.upload_btn = page.locator("#file-submit")
         self.success_msg = page.locator("h3")
         self.uploaded_files_list = page.locator("#uploaded-files")
+    
+    def navigate(self, endpoint):
+        import os
+        base_url = os.getenv("BASE_URL")
+        target_url = f"{base_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        super().navigate(target_url)
 
     def upload_file(self, file_path):
         logger.info(f"Uploading file from path: {file_path}")
@@ -23,6 +29,12 @@ class DynamicPage(BasePage):
         self.start_btn = page.locator("#start button")
         self.finish_text = page.locator("#finish h4")
         self.loading_bar = page.locator("#loading")
+    
+    def navigate(self, endpoint):
+        import os
+        base_url = os.getenv("BASE_URL")
+        target_url = f"{base_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        super().navigate(target_url)
 
     def start_loading(self):
         logger.info("Clicking the Start button for dynamic content")
@@ -32,6 +44,12 @@ class DropdownPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
         self.select_element = page.locator("#dropdown")
+    
+    def navigate(self, endpoint):
+        import os
+        base_url = os.getenv("BASE_URL")
+        target_url = f"{base_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        super().navigate(target_url)
 
     def select_option_by_label(self, label):
         logger.info(f"Selecting dropdown option: {label}")

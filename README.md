@@ -1,6 +1,7 @@
-# 🚀 QA Automation Challenge - The Internet (Herokuapp)
+# 🚀 QA Automation Challenge - Multi-App QA Automation Framework
 
 Professional automated testing suite designed to validate critical modules of "The Internet" platform. This project follows **Senior QA standards**, utilizing a **BDD (Behavior Driven Development)** approach for readability and the **Page Object Model (POM)** pattern for high maintainability.
+Professional automated testing suite designed to validate critical business flows for **The Internet (Herokuapp)** and **SauceDemo E-commerce**. This project follows **Senior QA standards**, utilizing **Playwright, Python**, and **Pytest-BDD**.
 
 ## 🛠️ Tech Stack
 *   **Language:** Python 3.10+
@@ -21,14 +22,22 @@ Professional automated testing suite designed to validate critical modules of "T
 
 ## 🏗️ Project Architecture
 ```text
+
 .
-├── features/              # Gherkin scenarios (.feature)
-├── pages/                 # Page Object Model (Locators & Actions)
-├── step_definitions/      # Glue code connecting Gherkin to Python
-├── reports/               # Execution results and Allure data
-├── conftest.py            # Global fixtures, Allure hooks, and Screenshots
-├── pytest.ini             # Execution configuration and custom markers
-└── .env                   # Environment variables (URLs, Credentials)
+├── features/
+│   ├── herokuapp/          # Exercise 1: Auth, Upload, Dynamic, Dropdown
+│   └── saucedemo/           # Exercise 2: E2E Purchase & Responsive flows
+├── pages/
+│   ├── common/             # Shared Core (BasePage)
+│   ├── herokuapp/          # Page Objects for Exercise 1
+│   └── saucedemo/           # Page Objects for Exercise 2
+├── step_definitions/
+│   ├── test_herokuapp.py   # Glue code for Exercise 1
+│   └── test_saucedemo.py   # Glue code for Exercise 2
+├── docs/                   # Strategic Planning PDFs (Exercise 1 & 2)
+├── conftest.py             # Global Fixtures & Mobile Viewport Logic (@mobile)
+├── pytest.ini              # Markers & Logging configuration
+└── .env                    # Environment variables (Sensitive data)
 ```
 
 ## 📋 Test Modules Overview
@@ -97,14 +106,26 @@ pytest -m smoke
 # Only Regression suite
 pytest -m regression
 
+# Run Exercise 1 (Herokuapp)
+pytest -m herokuapp
+
+# Run Exercise 2 (SauceDemo)
+pytest -m saucedemo
+
 # Run specific test file
 pytest step_definitions/test_login_steps.py
+
+# Run Mobile Responsive tests only
+pytest -m mobile
 
 # Run with verbose output
 pytest -v
 
 # Run and generate Allure results
 pytest --alluredir=reports/allure-results
+
+allure generate reports/allure-results -o reports/allure-report --clean
+
 ```
 
 ### Generate & View Allure Report

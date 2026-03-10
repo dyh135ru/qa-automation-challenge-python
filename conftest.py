@@ -33,3 +33,19 @@ def pytest_runtest_makereport(item, call):
                 name="error_screenshot",
                 attachment_type=allure.attachment_type.PNG
             )
+@pytest.fixture
+def page(browser, request):
+    viewport_config = {"width": 1280, "height": 800}
+    
+    if "mobile" in request.node.keywords:
+        viewport_config = {"width": 375, "height": 667}
+        logger.info("Setting viewport to Mobile (375x667) for this scenario")
+    else:
+        logger.info("Setting viewport to Desktop (1280x800)")
+
+    context = browser.new_context(viewport=viewport_config)
+    page = context.new_page()
+    
+    yield page
+    
+    context.close()
