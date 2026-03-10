@@ -124,6 +124,8 @@ pytest -v
 # Run and generate Allure results
 pytest --alluredir=reports/allure-results
 
+allure serve reports/allure-results
+
 allure generate reports/allure-results -o reports/allure-report --clean
 
 ```
