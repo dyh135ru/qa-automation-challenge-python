@@ -10,6 +10,15 @@ Professional automated testing suite designed to validate critical modules of "T
 *   **Logging:** Python Logging Module (Full Traceability)
 *   **Environment Management:** Python-dotenv
 
+## 📁 Project Deliverables
+
+
+| Deliverable | Link |
+| :--- | :--- |
+| **Bug Tracking Board** | [Trello Board] https://trello.com/invite/b/69af7bb1cc2415df2a179685/ATTI9ff18aa35c3414dd4fbf039c97d9485e8D7AAF26/mi-tablero-de-trello |
+| **Strategic Planning & Test Cases** | [PDF Document](./docs/QA%20Stategy%202026.pdf) |
+| **Automation Report** | [Allure Results](./reports/allure-results) |
+
 ## 🏗️ Project Architecture
 ```text
 .
